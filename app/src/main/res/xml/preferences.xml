@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+            android:title="@string/caffeine_pref_cate"
+            android:icon="@drawable/ic_caffeine_tile">
+        <EditTextPreference
+                android:key="caffeine_tile_label"
+                android:title="@string/caffeine_pref_tile_label"
+                android:defaultValue="@string/caffeine_pref_cate" />
+        <SwitchPreference
+                android:key="caffeine_show_notif"
+                android:defaultValue="true"
+                android:title="@string/caffeine_pref_show_notif" />
+        <EditTextPreference
+                android:key="caffeine_notif_title"
+                android:dependency="caffeine_show_notif"
+                android:title="@string/caffeine_pref_notif_title"
+                android:defaultValue="@string/caffeine_notif_title" />
+        <EditTextPreference
+                android:key="caffeine_notif_text"
+                android:dependency="caffeine_show_notif"
+                android:title="@string/caffeine_pref_notif_text"
+                android:defaultValue="@string/caffeine_notif_text"/>
+    </PreferenceScreen>
+    <PreferenceScreen
+            android:title="@string/qr_pref_cate"
+            android:icon="@drawable/ic_qr_tile">
+        <EditTextPreference
+                android:key="qr_tile_label"
+                android:title="@string/qr_pref_tile_label"
+                android:defaultValue="@string/qr_pref_cate" />
+        <PreferenceCategory android:title="@string/qr_pref_cate_action">
+            <ListPreference
+                    android:key="qr_action_click"
+                    android:title="@string/qr_pref_action_click"
+                    android:defaultValue="0"
+                    android:entries="@array/qr_pref_action"
+                    android:entryValues="@array/qr_pref_action_value" />
+            <ListPreference
+                    android:key="qr_action_longclick"
+                    android:title="@string/qr_pref_action_longclick"
+                    android:defaultValue="1"
+                    android:entries="@array/qr_pref_action"
+                    android:entryValues="@array/qr_pref_action_value" />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="@string/qr_pref_cate_other">
+            <SwitchPreference
+                    android:key="qr_open_direct"
+                    android:title="@string/qr_pref_open_direct" />
+            <SwitchPreference
+                    android:key="qr_hide_share"
+                    android:title="@string/qr_pref_hide_share" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+            android:title="@string/pref_rotation_cate"
+            android:icon="@drawable/ic_screen_lock_rotation">
+        <Preference
+                android:key="permit_write_sys"
+                android:title="@string/permit_write_sys" />
+        <Preference
+                android:key="permit_float_window"
+                android:title="@string/permit_float_window" />
+    </PreferenceScreen>
+    <PreferenceCategory android:title="@string/pref_cate_about">
+        <SwitchPreference
+                android:key="hide_launcher"
+                android:title="@string/pref_hide_launcher" />
+        <Preference
+                android:key="version_code"
+                android:title="@string/pref_version_code" />
+    </PreferenceCategory>
+</PreferenceScreen>

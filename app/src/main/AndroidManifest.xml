@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="soko.ekibun.tilesbox">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application
+            android:allowBackup="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".activity.SettingsActivity">
+        </activity>
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.CaffeineService"/>
+        <service
+                android:name=".service.CaffeineQuickTileService"
+                android:icon="@drawable/ic_caffeine_tile"
+                android:label="@string/caffeine_pref_cate"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+                android:name=".service.QrQuickTileService"
+                android:icon="@drawable/ic_qr_tile"
+                android:label="@string/qr_pref_cate"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+
+        <activity
+                android:name=".activity.QrShareActivity"
+                android:autoRemoveFromRecents="true"
+                android:excludeFromRecents="true"
+                android:exported="true"
+                android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".activity.QrActionActivity"
+                android:autoRemoveFromRecents="true"
+                android:excludeFromRecents="true"
+                android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.QrCaptureService">
+        </service>
+
+        <activity
+                android:name=".activity.QrResultActivity"
+                android:autoRemoveFromRecents="true"
+                android:excludeFromRecents="true"
+                android:theme="@style/AppTheme.Dialog.NoTitle">
+        </activity>
+        <activity
+                android:name=".activity.QrCameraActivity"
+                android:autoRemoveFromRecents="true"
+                android:excludeFromRecents="true"
+                android:theme="@style/AppTheme.Fullscreen">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".service.RotationQuickTileService"
+                android:icon="@drawable/ic_screen_lock_rotation"
+                android:label="@string/pref_rotation_cate"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service android:name=".service.RotationLockService"/>
+    </application>
+
+</manifest>

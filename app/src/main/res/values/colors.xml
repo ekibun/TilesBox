@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4284F3</color>
+    <color name="colorPrimaryDark">#284f92</color>
+
+    <color name="cameraMask">#80000000</color>
+    <color name="cameraAction">#aa000000</color>
+    <color name="ripple">#aaffffff</color>
+</resources>
