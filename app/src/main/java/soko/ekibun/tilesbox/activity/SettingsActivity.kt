@@ -24,7 +24,7 @@ class SettingsActivity : Activity() {
         builder.setNeutralButton(R.string.about_dialog_github) { _, _ ->
             val intent = Intent()
             intent.action = Intent.ACTION_VIEW
-            intent.data = Uri.parse("https://github.com/acaoairy/caffeine")
+            intent.data = Uri.parse("https://github.com/ekibun/TilesBox")
             startActivity(Intent.createChooser(intent, null))
         }
         builder.setNegativeButton(R.string.about_dialog_support) { _, _ ->
