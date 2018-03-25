@@ -46,7 +46,7 @@ class CaffeineService : Service() {
     }
 
     private fun acquireCaffeine() {
-        mWakeLock.acquire(Long.MAX_VALUE)
+        mWakeLock.acquire()
 
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
         if (sp.getBoolean("caffeine_show_notif", true)) {
