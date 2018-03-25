@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
@@ -111,6 +110,16 @@
             </intent-filter>
         </service>
         <service android:name=".service.RotationLockService"/>
+
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="soko.ekibun.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+        <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+    </provider>
     </application>
 
 </manifest>

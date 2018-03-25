@@ -11,6 +11,7 @@ import java.io.FileOutputStream
 import android.provider.MediaStore
 import android.content.ContentValues
 import android.content.Intent
+import android.support.v4.content.FileProvider
 
 
 object ImageUtil {
@@ -96,9 +97,10 @@ object ImageUtil {
         }
     }
 
-    fun cropImage(context: Activity, f: File, REQUEST_CROP_BITMAP: Int){
+    fun cropImage(context: Activity, f: File, REQUEST_CROP_BITMAP: Int) {
         val intent = Intent("com.android.camera.action.CROP")
-        intent.setDataAndType(ImageUtil.getImageContentUri(context, f.absolutePath), "image/*")
+
+        intent.setDataAndType(FileProvider.getUriForFile(context, "soko.ekibun.fileprovider", f), "image/*")
         // 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
         intent.putExtra("crop", true)
         intent.putExtra("aspectX", 1)
@@ -108,7 +110,7 @@ object ImageUtil {
         context.startActivityForResult(intent, REQUEST_CROP_BITMAP)
     }
 
-    fun imageToFile(context: Context, bitmap: Bitmap): File{
+    fun imageToFile(context: Context, bitmap: Bitmap): File {
         val f = File(context.externalCacheDir, "pic.jpg")
         try {
             val out = FileOutputStream(
@@ -121,23 +123,5 @@ object ImageUtil {
             e.printStackTrace()
         }
         return f
-    }
-
-    private fun getImageContentUri(context: Context, path: String): Uri {
-        val cursor = context.contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                arrayOf(MediaStore.Images.Media._ID),
-                MediaStore.Images.Media.DATA + "=? ",
-                arrayOf(path), null)
-        cursor.use {
-            return if (it.moveToFirst()) {
-                val id = it.getInt(it.getColumnIndex(MediaStore.Images.Media._ID))
-                val baseUri = Uri.parse("content://media/external/images/media")
-                Uri.withAppendedPath(baseUri, "" + id)
-            } else {
-                val contentValues = ContentValues(1)
-                contentValues.put(MediaStore.Images.Media.DATA, path)
-                context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-            }
-        }
     }
 }

@@ -167,14 +167,10 @@ class QrActionActivity : Activity() {
 
     companion object {
         fun processBitmap(context: Context, bitmap: Bitmap){
-            if(PermissionUtil.requestWriteStorage(context)){
-                val intent = Intent(context, QrActionActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                intent.putExtra("bitmap", ImageUtil.imageToFile(context, bitmap).absolutePath)
-                context.startActivity(intent)
-            }else{
-                Decoder.scanBitmap(bitmap, context)
-            }
+            val intent = Intent(context, QrActionActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("bitmap", ImageUtil.imageToFile(context, bitmap).absolutePath)
+            context.startActivity(intent)
         }
 
         fun processTileClick(context: Context){

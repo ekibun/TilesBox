@@ -30,12 +30,4 @@ object PermissionUtil{
         context.startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                 Uri.parse("package:" + context.packageName)))
     }
-
-    fun checkWriteStorage(context: Context): Boolean{
-        return context.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    }
-
-    fun requestWriteStorage(context: Context): Boolean{
-        return context.checkCallingOrSelfPermission (android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    }
 }
