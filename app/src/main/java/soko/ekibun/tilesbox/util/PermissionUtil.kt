@@ -2,7 +2,6 @@ package soko.ekibun.tilesbox.util
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 

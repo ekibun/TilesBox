@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
-            android:title="@string/caffeine_pref_cate"
+            android:title="@string/pref_caffeine_cate"
             android:icon="@drawable/ic_caffeine_tile">
         <EditTextPreference
                 android:key="caffeine_tile_label"
-                android:title="@string/caffeine_pref_tile_label"
-                android:defaultValue="@string/caffeine_pref_cate" />
-        <SwitchPreference
-                android:key="caffeine_show_notif"
-                android:defaultValue="true"
-                android:title="@string/caffeine_pref_show_notif" />
-        <EditTextPreference
-                android:key="caffeine_notif_title"
-                android:dependency="caffeine_show_notif"
-                android:title="@string/caffeine_pref_notif_title"
-                android:defaultValue="@string/caffeine_notif_title" />
-        <EditTextPreference
-                android:key="caffeine_notif_text"
-                android:dependency="caffeine_show_notif"
-                android:title="@string/caffeine_pref_notif_text"
-                android:defaultValue="@string/caffeine_notif_text"/>
+                android:title="@string/pref_tile_label"
+                android:defaultValue="@string/pref_caffeine_cate" />
+        <PreferenceCategory android:title="@string/pref_cate_other">
+            <SwitchPreference
+                    android:key="caffeine_show_notif"
+                    android:defaultValue="true"
+                    android:title="@string/caffeine_pref_show_notif" />
+            <EditTextPreference
+                    android:key="caffeine_notif_title"
+                    android:dependency="caffeine_show_notif"
+                    android:title="@string/caffeine_pref_notif_title"
+                    android:defaultValue="@string/caffeine_notif_title" />
+            <EditTextPreference
+                    android:key="caffeine_notif_text"
+                    android:dependency="caffeine_show_notif"
+                    android:title="@string/caffeine_pref_notif_text"
+                    android:defaultValue="@string/caffeine_notif_text"/>
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
-            android:title="@string/qr_pref_cate"
+            android:title="@string/pref_qr_cate"
             android:icon="@drawable/ic_qr_tile">
         <EditTextPreference
                 android:key="qr_tile_label"
-                android:title="@string/qr_pref_tile_label"
-                android:defaultValue="@string/qr_pref_cate" />
+                android:title="@string/pref_tile_label"
+                android:defaultValue="@string/pref_qr_cate" />
         <PreferenceCategory android:title="@string/qr_pref_cate_action">
             <ListPreference
                     android:key="qr_action_click"
@@ -43,7 +45,7 @@
                     android:entries="@array/qr_pref_action"
                     android:entryValues="@array/qr_pref_action_value" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/qr_pref_cate_other">
+        <PreferenceCategory android:title="@string/pref_cate_other">
             <SwitchPreference
                     android:key="qr_open_direct"
                     android:title="@string/qr_pref_open_direct" />
@@ -55,12 +57,40 @@
     <PreferenceScreen
             android:title="@string/pref_rotation_cate"
             android:icon="@drawable/ic_screen_lock_rotation">
-        <Preference
-                android:key="permit_write_sys"
-                android:title="@string/permit_write_sys" />
-        <Preference
-                android:key="permit_float_window"
-                android:title="@string/permit_float_window" />
+        <PreferenceCategory android:title="@string/pref_cate_permit">
+            <SwitchPreference
+                    android:contextClickable="false"
+                    android:key="rotation_permit_write_system"
+                    android:title="@string/permit_write_system" />
+            <SwitchPreference
+                    android:contextClickable="false"
+                    android:key="rotation_permit_float_window"
+                    android:title="@string/permit_float_window" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+            android:title="@string/pref_corner_cate"
+            android:icon="@drawable/ic_rounded_corner">
+        <EditTextPreference
+                android:key="corner_tile_label"
+                android:title="@string/pref_tile_label"
+                android:defaultValue="@string/pref_corner_cate" />
+        <PreferenceCategory android:title="@string/pref_cate_permit">
+            <SwitchPreference
+                    android:contextClickable="false"
+                    android:key="corner_permit_float_window"
+                    android:title="@string/permit_float_window" />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="@string/pref_cate_other">
+            <SwitchPreference
+                    android:key="corner_run_on_boot"
+                    android:title="@string/corner_pref_run_on_boot" />
+            <EditTextPreference
+                    android:key="corner_size"
+                    android:inputType="number"
+                    android:title="@string/corner_pref_size"
+                    android:defaultValue="@string/corner_size" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceCategory android:title="@string/pref_cate_about">
         <SwitchPreference

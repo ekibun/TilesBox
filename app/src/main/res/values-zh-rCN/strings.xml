@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">TilesBox</string>
+
+    <!--caffeine-->
+    <string name="pref_caffeine_cate">保持亮屏</string>
+    <string name="caffeine_pref_show_notif">显示前台通知</string>
+    <string name="caffeine_pref_notif_title">通知标题</string>
+    <string name="caffeine_pref_notif_text">通知内容</string>
+
+    <string name="caffeine_notif_title">屏幕将保持点亮直至手动关闭</string>
+    <string name="caffeine_notif_text">点按通知以结束</string>
+
+    <!--qr code-->
+    <string name="pref_qr_cate">扫一扫</string>
+    <string name="qr_pref_cate_action">磁贴动作</string>
+    <string name="qr_pref_action_click">单击动作</string>
+    <string name="qr_pref_action_longclick">长按动作</string>
+
+    <string name="qr_pref_action_camera">扫描相机</string>
+    <string name="qr_pref_action_screen">扫描屏幕</string>
+    <string name="qr_pref_action_wechat">微信扫一扫</string>
+    <string name="qr_pref_action_alipay">支付宝扫一扫</string>
+    <string name="qr_pref_action_settings">打开设置</string>
+    <string name="qr_pref_action_gallery">从图库选择</string>
+    <string name="qr_pref_action_alipay_pay">支付宝付款码</string>
+    <string name="qr_pref_action_menu">选择菜单</string>
+    <string-array name="qr_pref_action">
+        <item>@string/qr_pref_action_camera</item>
+        <item>@string/qr_pref_action_screen</item>
+        <item>@string/qr_pref_action_wechat</item>
+        <item>@string/qr_pref_action_alipay</item>
+        <item>@string/qr_pref_action_alipay_pay</item>
+        <item>@string/qr_pref_action_gallery</item>
+        <item>@string/qr_pref_action_settings</item>
+        <item>@string/qr_pref_action_menu</item>
+    </string-array>
+    <string-array name="qr_pref_action_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string name="qr_pref_open_direct">直接打开</string>
+    <string name="qr_pref_hide_share">从分享列表隐藏</string>
+
+    <string name="qr_toast_no_wechat">未安装微信</string>
+    <string name="qr_toast_no_alipay">未安装支付宝</string>
+    <string name="qr_toast_copied">已复制 %s 到剪贴板</string>
+    <string name="qr_toast_no_result">未检测到二维码</string>
+
+    <!--rotation-->
+    <string name="pref_rotation_cate">屏幕旋转</string>
+    <string name="rotation_portrait">纵向</string>
+    <string name="rotation_landscape">横向</string>
+    <string name="rotation_auto">自动旋转</string>
+
+    <!--round corner-->
+    <string name="pref_corner_cate">屏幕圆角</string>
+    <string name="corner_pref_size">尺寸</string>
+    <string name="corner_size">24</string>
+    <string name="corner_pref_run_on_boot">开机启动</string>
+
+    <!--permit-->
+    <string name="pref_cate_permit">权限</string>
+    <string name="permit_write_system">修改系统设置</string>
+    <string name="permit_float_window">显示在应用上层</string>
+    <string name="toast_no_permit">缺少权限</string>
+
+    <!--camera-->
+    <string name="qr_frame_info">将二维码放入框内，即可自动扫描</string>
+    <string name="qr_scan_wechat">微信扫一扫</string>
+    <string name="qr_scan_alipay">支付宝扫一扫</string>
+
+    <!--qr result-->
+    <string name="qr_result_copy">复制</string>
+    <string name="qr_result_share">分享</string>
+    <string name="qr_result_open">打开</string>
+
+    <!--setting-->
+    <string name="pref_cate_other">杂项</string>
+    <string name="pref_tile_label">磁贴标签</string>
+    <string name="pref_hide_launcher">隐藏启动器图标</string>
+    <string name="pref_cate_about">关于</string>
+    <string name="pref_version_code">版本号</string>
+
+    <!--about-->
+    <string name="about_dialog_title">关于</string>
+    <string name="about_dialog_message">
+        为 Android 快捷设置增加以下磁贴\n
+        1. 保持亮屏\n
+        2. 扫一扫\n
+        3. 屏幕旋转\n
+        4. 屏幕圆角\n
+    </string>
+    <string name="about_dialog_support">打赏</string>
+    <string name="about_dialog_github">GitHub</string>
+    <string name="about_dialog_button">确定</string>
+</resources>

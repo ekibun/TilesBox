@@ -9,7 +9,6 @@ import java.io.File
 import android.graphics.Bitmap
 import java.io.FileOutputStream
 import android.provider.MediaStore
-import android.content.ContentValues
 import android.content.Intent
 import android.support.v4.content.FileProvider
 

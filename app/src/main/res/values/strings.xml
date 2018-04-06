@@ -2,30 +2,28 @@
     <string name="app_name">TilesBox</string>
 
     <!--caffeine-->
-    <string name="caffeine_notif_title">屏幕将保持点亮直至手动关闭</string>
-    <string name="caffeine_notif_text">点按通知以结束</string>
+    <string name="pref_caffeine_cate">Caffeine</string>
+    <string name="caffeine_pref_show_notif">Show foreground notification</string>
+    <string name="caffeine_pref_notif_title">Notification Title</string>
+    <string name="caffeine_pref_notif_text">Notification Text</string>
 
-    <!--设置页-->
-    <string name="caffeine_pref_cate">保持亮屏</string>
-    <string name="caffeine_pref_tile_label">磁贴标签</string>
-    <string name="caffeine_pref_show_notif">显示前台通知</string>
-    <string name="caffeine_pref_notif_title">通知标题</string>
-    <string name="caffeine_pref_notif_text">通知内容</string>
+    <string name="caffeine_notif_title">Screen will remain on until turning off manually</string>
+    <string name="caffeine_notif_text">Tap notification to stop</string>
 
-    <string name="qr_pref_cate">扫一扫</string>
-    <string name="qr_pref_tile_label">磁贴标签</string>
-    <string name="qr_pref_cate_action">磁贴动作</string>
-    <string name="qr_pref_action_click">单击动作</string>
-    <string name="qr_pref_action_longclick">长按动作</string>
+    <!--qr code-->
+    <string name="pref_qr_cate">Scan Qr Code</string>
+    <string name="qr_pref_cate_action">Tile Action</string>
+    <string name="qr_pref_action_click">Click</string>
+    <string name="qr_pref_action_longclick">Press</string>
 
-    <string name="qr_pref_action_camera">扫描相机</string>
-    <string name="qr_pref_action_screen">扫描屏幕</string>
-    <string name="qr_pref_action_wechat">微信扫一扫</string>
-    <string name="qr_pref_action_alipay">支付宝扫一扫</string>
-    <string name="qr_pref_action_settings">打开设置</string>
-    <string name="qr_pref_action_gallery">从图库选择</string>
-    <string name="qr_pref_action_alipay_pay">支付宝付款码</string>
-    <string name="qr_pref_action_menu">选择菜单</string>
+    <string name="qr_pref_action_camera">Scan Camera</string>
+    <string name="qr_pref_action_screen">Scan Screen</string>
+    <string name="qr_pref_action_wechat">WeChat Scanner</string>
+    <string name="qr_pref_action_alipay">Alipay Scanner</string>
+    <string name="qr_pref_action_settings">Open Settings</string>
+    <string name="qr_pref_action_gallery">Open Gallery</string>
+    <string name="qr_pref_action_alipay_pay">Alipay Payment Code</string>
+    <string name="qr_pref_action_menu">Show Menu</string>
     <string-array name="qr_pref_action">
         <item>@string/qr_pref_action_camera</item>
         <item>@string/qr_pref_action_screen</item>
@@ -46,43 +44,63 @@
         <item>6</item>
         <item>7</item>
     </string-array>
-    <string name="qr_pref_cate_other">杂项</string>
-    <string name="qr_pref_open_direct">直接打开</string>
-    <string name="qr_pref_hide_share">从分享列表隐藏</string>
+    <string name="qr_pref_open_direct">Open directly</string>
+    <string name="qr_pref_hide_share">Hide from Share List</string>
 
-    <string name="qr_toast_no_wechat">未安装微信</string>
-    <string name="qr_toast_no_alipay">未安装支付宝</string>
-    <string name="qr_toast_copied">已复制 %s 到剪贴板</string>
-    <string name="qr_toast_no_result">未检测到二维码</string>
-    <string name="qr_toast_no_permit">缺少权限</string>
+    <string name="qr_toast_no_wechat">Cannot find WeChat</string>
+    <string name="qr_toast_no_alipay">Cannot find Alipay</string>
+    <string name="qr_toast_copied">Finish copy %s to Clipboard</string>
+    <string name="qr_toast_no_result">Cannot find QRcode</string>
 
-    <string name="pref_hide_launcher">隐藏启动器图标</string>
-    <string name="pref_cate_about">关于</string>
-    <string name="pref_version_code">版本号</string>
+    <!--rotation-->
+    <string name="pref_rotation_cate">Rotation</string>
+    <string name="rotation_portrait">Portrait</string>
+    <string name="rotation_landscape">Landscape</string>
+    <string name="rotation_auto">Rotation Auto</string>
 
-    <string name="rotation_portrait">纵向</string>
-    <string name="rotation_landscape">横向</string>
-    <string name="rotation_auto">自动旋转</string>
+    <!--round corner-->
+    <string name="pref_corner_cate">Rounded Corner</string>
+    <string name="corner_pref_size">Corner size</string>
+    <string name="corner_size">24</string>
+    <string name="corner_pref_run_on_boot">Run on boot</string>
 
-    <!--相机页-->
-    <string name="qr_frame_info">将二维码放入框内，即可自动扫描</string>
-    <string name="qr_scan_wechat">微信扫一扫</string>
-    <string name="qr_scan_alipay">支付宝扫一扫</string>
+    <!--permit-->
+    <string name="pref_cate_permit">Permissions</string>
+    <string name="permit_write_system">Allow modify system settings</string>
+    <string name="permit_float_window">Allow display over other apps</string>
+    <string name="toast_no_permit">Missing permissions</string>
 
-    <!--结果页-->
-    <string name="qr_result_copy">复制</string>
-    <string name="qr_result_share">分享</string>
-    <string name="qr_result_open">打开</string>
+    <!--camera-->
+    <string name="qr_frame_info">Align the QRcode within the frame to scan</string>
+    <string name="qr_scan_wechat">WeChat Scanner</string>
+    <string name="qr_scan_alipay">Alipay Scanner</string>
 
-    <!--关于页-->
-    <string name="about_dialog_title">关于</string>
+    <!--qr result-->
+    <string name="qr_result_copy">Copy</string>
+    <string name="qr_result_share">Share</string>
+    <string name="qr_result_open">Open</string>
+
+    <!--setting-->
+    <string name="pref_cate_other">Miscellaneous</string>
+    <string name="pref_tile_label">Tiles label</string>
+    <string name="pref_hide_launcher">Hide from Launcher</string>
+    <string name="pref_cate_about">About</string>
+    <string name="pref_version_code">Version</string>
+
+    <!--about-->
+    <string name="about_dialog_title">About</string>
     <string name="about_dialog_message">
-        磁贴工具箱
+        Add following quick setting tiles to QuickSetting Panel on Androd N+\n
+        1. Caffeine\n
+        Keep screen on by toggle with single tap\n
+        2. QrCode Scanner\n
+        Scan screen QrCode or open QrCode Scanner Quickly\n
+        3. Rotation\n
+        Quickly toggle and lock screen orientation\n
+        4. Round Corner\n
+        Make screen corner rounded\n
     </string>
-    <string name="about_dialog_support">打赏</string>
+    <string name="about_dialog_support">Donate</string>
     <string name="about_dialog_github">GitHub</string>
-    <string name="about_dialog_button">确定</string>
-    <string name="pref_rotation_cate">屏幕旋转</string>
-    <string name="permit_write_sys">修改系统设置</string>
-    <string name="permit_float_window">显示在应用上层</string>
+    <string name="about_dialog_button">OK</string>
 </resources>

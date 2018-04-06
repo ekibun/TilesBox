@@ -151,7 +151,7 @@ class QrActionActivity : Activity() {
                 service.putExtra("data", data)
                 startService(service)
             } else {
-                Toast.makeText(this, R.string.qr_toast_no_permit, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_no_permit, Toast.LENGTH_SHORT).show()
             }
         } else if (requestCode == requestPhotoGallery && data != null) {
             ImageUtil.getBitmapFromUri(data.data, this)?.let{

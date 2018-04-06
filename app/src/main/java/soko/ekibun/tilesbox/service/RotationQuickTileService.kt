@@ -32,7 +32,7 @@ class RotationQuickTileService : TileService() {
                 e.printStackTrace()
             }
         } else {
-            Toast.makeText(this, R.string.qr_toast_no_permit, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.toast_no_permit, Toast.LENGTH_LONG).show()
         }
     }
 

@@ -30,7 +30,7 @@ class CaffeineQuickTileService: TileService() {
     }
 
     private fun refreshState() {
-        qsTile.label = PreferenceManager.getDefaultSharedPreferences(this).getString("tile_label", getString(R.string.caffeine_pref_cate))
+        qsTile.label = PreferenceManager.getDefaultSharedPreferences(this).getString("caffeine_tile_label", getString(R.string.pref_caffeine_cate))
         if (CaffeineService.isServiceRunning(this)) {
             qsTile.state = Tile.STATE_ACTIVE
         } else {
