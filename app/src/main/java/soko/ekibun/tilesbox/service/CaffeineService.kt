@@ -5,8 +5,9 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.*
 import android.preference.PreferenceManager
-import android.os.PowerManager
 import android.os.IBinder
+import android.provider.Settings
+import android.widget.Toast
 import soko.ekibun.tilesbox.R
 import soko.ekibun.tilesbox.util.AppUtil
 import soko.ekibun.tilesbox.util.NotificationUtil
@@ -14,10 +15,6 @@ import soko.ekibun.tilesbox.util.NotificationUtil
 
 @Suppress("DEPRECATION")
 class CaffeineService : Service() {
-    private val mWakeLock: PowerManager.WakeLock by lazy{
-        (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "keep_screen_on_tag")
-    }
-
     private var myReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (Intent.ACTION_SCREEN_OFF == intent.action) {//当按下电源键，屏幕变黑的时候
@@ -36,37 +33,49 @@ class CaffeineService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startid: Int): Int {
-        if (intent != null) {
-            if (intent.getBooleanExtra("acquireCaffeine", false))
-                acquireCaffeine()
-            else if (intent.getBooleanExtra("notif_click", false))
-                releaseCaffeine()
+        if (Settings.System.canWrite(applicationContext)) {
+            if (intent != null) {
+                if (intent.getBooleanExtra("acquireCaffeine", false))
+                    acquireCaffeine()
+                else if (intent.getBooleanExtra("notifyClick", false))
+                    releaseCaffeine()
+            }
+        } else {
+            Toast.makeText(this, R.string.toast_no_permit, Toast.LENGTH_LONG).show()
         }
         return super.onStartCommand(intent, flags, startid)
     }
 
     private fun acquireCaffeine() {
-        mWakeLock.acquire()
-
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val lastTime = Settings.System.getInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT)
+        if(lastTime != Int.MAX_VALUE){
+            sp.edit().putString("caffeine_timeout", (lastTime / 1000).toString()).apply()
+        }
+        Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, Int.MAX_VALUE)
+
         if (sp.getBoolean("caffeine_show_notif", true)) {
-            val title = sp.getString("caffeine_notif_title", getString(R.string.caffeine_notif_title))
+            val title = sp.getString("caffeine_notif_title", getString(R.string.caffeine_notif_title))!!
             val description = sp.getString("caffeine_notif_text", getString(R.string.caffeine_notif_text))
             val builder = NotificationUtil.builder(this, "caffeine", title, NotificationManager.IMPORTANCE_LOW)
                     .setSmallIcon(R.drawable.ic_caffeine_tile)
                     .setContentTitle(title)
                     .setContentText(description)
-                    .setContentIntent(PendingIntent.getService(this, 0, Intent(this, CaffeineService::class.java).putExtra("notif_click", true), 0))
+                    .setContentIntent(PendingIntent.getService(this, 0, Intent(this, CaffeineService::class.java)
+                            .putExtra("notifyClick", true), 0))
             startForeground(233, builder.build())
         }
     }
 
     fun releaseCaffeine() {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, sp.getString("caffeine_timeout", "30")!!.toInt() * 1000)
         stopSelf()
     }
 
     override fun onDestroy() {
-        mWakeLock.release()
+        releaseCaffeine()
         unregisterReceiver(myReceiver)
         stopForeground(true)
         super.onDestroy()

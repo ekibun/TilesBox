@@ -3,11 +3,17 @@
     <PreferenceScreen
             android:title="@string/pref_caffeine_cate"
             android:icon="@drawable/ic_caffeine_tile">
-        <EditTextPreference
-                android:key="caffeine_tile_label"
-                android:title="@string/pref_tile_label"
-                android:defaultValue="@string/pref_caffeine_cate" />
+        <PreferenceCategory android:title="@string/pref_cate_permit">
+            <SwitchPreference
+                    android:contextClickable="false"
+                    android:key="caffeine_permit_write_system"
+                    android:title="@string/permit_write_system" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/pref_cate_other">
+            <EditTextPreference
+                    android:key="caffeine_tile_label"
+                    android:title="@string/pref_tile_label"
+                    android:defaultValue="@string/pref_caffeine_cate" />
             <SwitchPreference
                     android:key="caffeine_show_notif"
                     android:defaultValue="true"
@@ -22,6 +28,11 @@
                     android:dependency="caffeine_show_notif"
                     android:title="@string/caffeine_pref_notif_text"
                     android:defaultValue="@string/caffeine_notif_text"/>
+            <EditTextPreference
+                    android:key="caffeine_timeout"
+                    android:inputType="number"
+                    android:title="默认时间（s）"
+                    android:defaultValue="30" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen

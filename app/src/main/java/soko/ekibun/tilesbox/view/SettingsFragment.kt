@@ -28,6 +28,7 @@ class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPrefere
     override fun onPreferenceTreeClick(preferenceScreen: PreferenceScreen, preference: Preference): Boolean {
         when(preference.key) {
             "version_code"  -> (activity as SettingsActivity).showInfo()
+            "caffeine_permit_write_system",
             "rotation_permit_write_system" -> PermissionUtil.requestWriteSystemSettings(activity)
             "corner_permit_float_window",
             "rotation_permit_float_window" -> PermissionUtil.requestShowOverlay(activity)
@@ -94,9 +95,14 @@ class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPrefere
         textPref = findPreference("corner_size") as EditTextPreference
         textPref.summary = textPref.text
 
+        textPref = findPreference("caffeine_timeout") as EditTextPreference
+        textPref.summary = textPref.text
+
         var permitPref = findPreference("rotation_permit_float_window") as SwitchPreference
         permitPref.isChecked = PermissionUtil.checkShowOverlay(context)
         permitPref = findPreference("rotation_permit_write_system") as SwitchPreference
+        permitPref.isChecked = PermissionUtil.checkWriteSystemSettings(context)
+        permitPref = findPreference("caffeine_permit_write_system") as SwitchPreference
         permitPref.isChecked = PermissionUtil.checkWriteSystemSettings(context)
         permitPref = findPreference("corner_permit_float_window") as SwitchPreference
         permitPref.isChecked = PermissionUtil.checkShowOverlay(context)
