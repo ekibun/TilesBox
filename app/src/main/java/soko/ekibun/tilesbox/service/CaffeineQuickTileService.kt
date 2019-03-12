@@ -1,9 +1,11 @@
 package soko.ekibun.tilesbox.service
 
+import android.content.Intent
 import android.service.quicksettings.TileService
 import android.service.quicksettings.Tile
 import android.preference.PreferenceManager
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import soko.ekibun.tilesbox.R
 
@@ -15,6 +17,11 @@ class CaffeineQuickTileService: TileService() {
 
     override fun onStartListening() {
         refreshState()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        refreshState(false)
+        return super.onStartCommand(intent, flags, startId)
     }
 
     override// 点击
@@ -37,20 +44,21 @@ class CaffeineQuickTileService: TileService() {
         qsTile.updateTile()//更新Tile
     }
 
-    private fun refreshState() {
+    private fun refreshState(setService: Boolean = true) {
         qsTile.label = PreferenceManager.getDefaultSharedPreferences(this).getString("caffeine_tile_label", getString(R.string.pref_caffeine_cate))
         if (Settings.System.canWrite(applicationContext)) {
             val lastTime = Settings.System.getInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT)
             if (lastTime == Int.MAX_VALUE) {
-                CaffeineService.startService(applicationContext)
+                if(setService) CaffeineService.startService(applicationContext)
                 qsTile.state = Tile.STATE_ACTIVE
             } else {
-                CaffeineService.stopService(applicationContext)
+                if(setService) CaffeineService.stopService(applicationContext)
                 qsTile.state = Tile.STATE_INACTIVE
             }
         } else {
             qsTile.state = Tile.STATE_UNAVAILABLE
         }
+        Log.v("status", qsTile.state.toString())
         qsTile.updateTile()//更新Tile
     }
 }

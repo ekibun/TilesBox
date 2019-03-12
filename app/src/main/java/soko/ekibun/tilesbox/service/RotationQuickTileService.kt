@@ -16,11 +16,12 @@ class RotationQuickTileService : TileService() {
     override fun onStartListening() {
         super.onStartListening()
 
-        try {
-            updateQuickSettingsTile(OrientationUtil.getCurrentOrientation(this))
-        } catch (e: Settings.SettingNotFoundException) {
-            e.printStackTrace()
-        }
+        updateTile()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        updateTile()
+        return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onClick() {
@@ -50,7 +51,13 @@ class RotationQuickTileService : TileService() {
         return newOrientation
     }
 
-
+    private fun updateTile() {
+        try {
+            updateQuickSettingsTile(OrientationUtil.getCurrentOrientation(this))
+        } catch (e: Settings.SettingNotFoundException) {
+            e.printStackTrace()
+        }
+    }
 
     private fun updateQuickSettingsTile(orientation: Int) {
         qsTile.state = when (PermissionUtil.checkWriteSystemSettings(this)) {

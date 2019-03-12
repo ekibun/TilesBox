@@ -9,9 +9,7 @@ import android.os.IBinder
 import android.provider.Settings
 import android.widget.Toast
 import soko.ekibun.tilesbox.R
-import soko.ekibun.tilesbox.util.AppUtil
 import soko.ekibun.tilesbox.util.NotificationUtil
-
 
 @Suppress("DEPRECATION")
 class CaffeineService : Service() {
@@ -53,7 +51,7 @@ class CaffeineService : Service() {
         if(lastTime != Int.MAX_VALUE){
             sp.edit().putString("caffeine_timeout", (lastTime / 1000).toString()).apply()
         }
-        Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, Int.MAX_VALUE)
+        setTimeOut(Int.MAX_VALUE)
 
         if (sp.getBoolean("caffeine_show_notif", true)) {
             val title = sp.getString("caffeine_notif_title", getString(R.string.caffeine_notif_title))!!
@@ -68,9 +66,14 @@ class CaffeineService : Service() {
         }
     }
 
+    private fun setTimeOut(value: Int){
+        Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, value)
+        startService(Intent(this, CaffeineQuickTileService::class.java))
+    }
+
     fun releaseCaffeine() {
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
-        Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, sp.getString("caffeine_timeout", "30")!!.toInt() * 1000)
+        setTimeOut(sp.getString("caffeine_timeout", "30")!!.toInt() * 1000)
         stopSelf()
     }
 
@@ -81,9 +84,6 @@ class CaffeineService : Service() {
         super.onDestroy()
     }
     companion object {
-        fun isServiceRunning(context: Context):Boolean {
-            return AppUtil.isServiceRunning(context.applicationContext, CaffeineService::class.java.name)
-        }
         fun startService(context: Context) {
             //if (isServiceRunning(context))
             //    return
