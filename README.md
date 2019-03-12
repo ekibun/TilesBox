@@ -1,4 +1,8 @@
+![icon](./app/src/main/ic_launcher-web.png)
 # QuickSetting Tiles Box
+[![GitHub release](	https://img.shields.io/github/release-pre/ekibun/TilesBox.svg)](https://github.com/ekibun/TilesBox/releases)
+[![GitHub license](	https://img.shields.io/github/license/ekibun/TilesBox.svg)](https://github.com/ekibun/TilesBox)
+[![Github download]( https://img.shields.io/github/downloads/ekibun/TilesBox/total.svg)](https://github.com/ekibun/TilesBox/releases)
 
 Add following quick setting tiles to QuickSetting Panel on Androd N+
 
