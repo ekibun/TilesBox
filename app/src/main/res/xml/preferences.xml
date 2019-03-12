@@ -78,6 +78,11 @@
                     android:key="rotation_permit_float_window"
                     android:title="@string/permit_float_window" />
         </PreferenceCategory>
+        <PreferenceCategory android:title="@string/pref_cate_other">
+            <SwitchPreference
+                    android:key="rotation_reverse_landscape"
+                    android:title="@string/rotation_pref_reverse_landscape" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
             android:title="@string/pref_corner_cate"

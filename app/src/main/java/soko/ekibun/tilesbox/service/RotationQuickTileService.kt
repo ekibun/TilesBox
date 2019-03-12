@@ -2,6 +2,7 @@ package soko.ekibun.tilesbox.service
 
 import android.content.Intent
 import android.graphics.drawable.Icon
+import android.preference.PreferenceManager
 import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
@@ -39,7 +40,7 @@ class RotationQuickTileService : TileService() {
 
     private fun toggleOrientation(): Int {
         val oldOrientation = OrientationUtil.getCurrentOrientation(this)
-        val newOrientation = OrientationUtil.getOppositeOrientation(oldOrientation)
+        val newOrientation = OrientationUtil.getOppositeOrientation(oldOrientation, PreferenceManager.getDefaultSharedPreferences(this).getBoolean("rotation_reverse_landscape", false))
 
         Settings.System.putInt(contentResolver, Settings.System.ACCELEROMETER_ROTATION, 0)
         Settings.System.putInt(contentResolver, Settings.System.USER_ROTATION, newOrientation)

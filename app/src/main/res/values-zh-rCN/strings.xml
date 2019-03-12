@@ -57,6 +57,7 @@
     <string name="rotation_portrait">纵向</string>
     <string name="rotation_landscape">横向</string>
     <string name="rotation_auto">自动旋转</string>
+    <string name="rotation_pref_reverse_landscape">横屏反转</string>
 
     <!--round corner-->
     <string name="pref_corner_cate">屏幕圆角</string>

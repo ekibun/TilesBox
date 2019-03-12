@@ -14,9 +14,9 @@ object OrientationUtil {
     private const val ROTATION_LAND_REVERSE = Surface.ROTATION_270
     const val ROTATION_AUTO = -1
 
-    fun getOppositeOrientation(orientation: Int): Int {
+    fun getOppositeOrientation(orientation: Int, reverse: Boolean): Int {
         return when {
-            isPortrait(orientation) -> ROTATION_LAND
+            isPortrait(orientation) -> if(reverse) ROTATION_LAND_REVERSE else ROTATION_LAND
             isLandscape(orientation) -> ROTATION_PORT
             else -> ROTATION_AUTO
         }

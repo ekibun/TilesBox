@@ -57,6 +57,7 @@
     <string name="rotation_portrait">Portrait</string>
     <string name="rotation_landscape">Landscape</string>
     <string name="rotation_auto">Rotation Auto</string>
+    <string name="rotation_pref_reverse_landscape">Reverse Landscape</string>
 
     <!--round corner-->
     <string name="pref_corner_cate">Rounded Corner</string>
