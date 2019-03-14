@@ -1,6 +1,9 @@
 package soko.ekibun.tilesbox.service
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.drawable.Icon
 import android.preference.PreferenceManager
 import android.provider.Settings
@@ -16,13 +19,23 @@ class RotationQuickTileService : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-
-        updateTile()
+        refreshState()
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        updateTile()
-        return super.onStartCommand(intent, flags, startId)
+    private val receiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            refreshState()
+        }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        registerReceiver(receiver, IntentFilter(ACTION_UPDATETILE))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     override fun onClick() {
@@ -52,7 +65,7 @@ class RotationQuickTileService : TileService() {
         return newOrientation
     }
 
-    private fun updateTile() {
+    private fun refreshState() {
         try {
             updateQuickSettingsTile(OrientationUtil.getCurrentOrientation(this))
         } catch (e: Settings.SettingNotFoundException) {
@@ -84,5 +97,9 @@ class RotationQuickTileService : TileService() {
         }
 
         qsTile.updateTile()
+    }
+
+    companion object {
+        const val ACTION_UPDATETILE = "soko.ekibun.tilesbox.rotation.updatetile"
     }
 }

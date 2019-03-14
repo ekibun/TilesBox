@@ -1,6 +1,9 @@
 package soko.ekibun.tilesbox.service
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.service.quicksettings.TileService
 import android.service.quicksettings.Tile
 import android.preference.PreferenceManager
@@ -19,13 +22,23 @@ class CaffeineQuickTileService: TileService() {
         refreshState()
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        refreshState(false)
-        return super.onStartCommand(intent, flags, startId)
+    private val receiver = object:BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            refreshState(false)
+        }
     }
 
-    override// 点击
-    fun onClick() {
+    override fun onCreate() {
+        super.onCreate()
+        registerReceiver(receiver, IntentFilter(ACTION_UPDATETILE))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
+    }
+
+    override fun onClick() {
         if (Settings.System.canWrite(applicationContext)) {
             val lastTime = Settings.System.getInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT)
             if (lastTime == Int.MAX_VALUE) {
@@ -60,5 +73,9 @@ class CaffeineQuickTileService: TileService() {
         }
         Log.v("status", qsTile.state.toString())
         qsTile.updateTile()//更新Tile
+    }
+
+    companion object {
+        const val ACTION_UPDATETILE = "soko.ekibun.tilesbox.caffeine.updatetile"
     }
 }

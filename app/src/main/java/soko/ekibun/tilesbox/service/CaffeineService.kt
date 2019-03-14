@@ -68,7 +68,7 @@ class CaffeineService : Service() {
 
     private fun setTimeOut(value: Int){
         Settings.System.putInt(contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, value)
-        startService(Intent(this, CaffeineQuickTileService::class.java))
+        sendBroadcast(Intent(CaffeineQuickTileService.ACTION_UPDATETILE))
     }
 
     fun releaseCaffeine() {

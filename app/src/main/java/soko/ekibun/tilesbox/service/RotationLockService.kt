@@ -39,14 +39,14 @@ class RotationLockService : Service() {
         val curOrientation = OrientationUtil.getCurrentOrientation(this)
         mWindowManager.addView(view, initWindowParams(curOrientation))
 
-        startService(Intent(this, RotationQuickTileService::class.java))
+        sendBroadcast(Intent(RotationQuickTileService.ACTION_UPDATETILE))
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mWindowManager.removeView(view)
 
-        startService(Intent(this, RotationQuickTileService::class.java))
+        sendBroadcast(Intent(RotationQuickTileService.ACTION_UPDATETILE))
     }
 
     private fun initWindowParams(curOrientation: Int): WindowManager.LayoutParams {
